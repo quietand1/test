@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dao.MybatisEmployee">
+
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"></cache>
+
+
+    <select id="getEmpById" resultType="bean.Employee">
+        select * from tb1_employee where id = #{id}
+    </select>
+
+    <!--public void addEmp(Employee employee);
+    public void updateEmp(Employee employee);-->
+    <insert id="addEmp" parameterType="bean.Employee">
+        insert into tb1_employee(last_name,email,gender,d_id)
+        values (#{lastName},#{email},#{gender},#{did})
+    </insert>
+
+    <update id="updateEmp">
+        update tb1_employee
+        set last_name=#{lastName},email=#{email},gender=#{gender}
+        where id=#{id}
+    </update>
+</mapper>
